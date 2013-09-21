@@ -1,0 +1,14 @@
+
+<div ng-controller = "BoardController">
+  <div class="row-fluid">
+    <div class="span2" id = "symbolContainer"  ng-hide = "formationSelected" ng-init="formationSelected=false">
+      <!--Sidebar content-->
+      <formations ng-click="click()" ></formations>
+    </div>
+    <div class="span10">
+      <board></board>
+    </div>
+  </div>
+</div>
+
+

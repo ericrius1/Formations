@@ -1,0 +1,27 @@
+$svg-height: 150px;
+$svg-width: 150px;
+
+@mixin symbol-border{
+  border: 1px solid #000;
+  margin-bottom: 10px;
+}
+
+#symbolContainer {
+  width: $svg-width;
+  height: $svg-height + 10;
+  overflow: auto;
+  padding: 5px;
+  @include symbol-border;
+}
+
+
+
+
+display-symbol > svg{
+  @include symbol-border;
+}
+
+create-symbol > svg {
+  @include symbol-border;
+}
+
