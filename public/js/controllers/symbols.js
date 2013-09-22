@@ -14,8 +14,6 @@ window.angular.module('ngff.controllers.symbols', [])
 
       $scope.findOne = function() {
         Symbols.get({symbolId : $routeParams.symbolId}, function(symbol){
-          // var parser = new DOMParser();
-          // $scope.svg = parser.parseFromString(symbol.svgxml, "image/svg+xml");
           $scope.symbol = symbol;
         })
       }
