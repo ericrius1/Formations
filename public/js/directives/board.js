@@ -15,7 +15,6 @@ window.angular.module('ngff.directives.board', [])
           })
           .on("drag", function(d, i) {
             d3.select(this).attr("transform", function(d, i) {
-              debugger;
               return "translate(" + [d3.event.x, d3.event.y] + ")"
             })
           });
@@ -23,11 +22,12 @@ window.angular.module('ngff.directives.board', [])
         scope.svg = d3.select(elem[0]).append("svg")
           .attr('width', elem.parent().width())
           .attr('height', elem.parent().height())
-          .style('background', 'blue')
+          .style('background', 'purple')
 
         scope.$on('addFormation', function(event, formation) {
-          scope.svg.node().appendChild(formation.node())
-          drag1.call( formation.select('g'));
+          var group = formation.select('g');
+          scope.svg.node().appendChild(group.node())
+          drag1.call(group);
 
         })
 
