@@ -23,6 +23,16 @@ window.angular.module('ngff.directives.board', [])
           .attr('width', elem.parent().width())
           .attr('height', elem.parent().height())
           .style('background', 'purple')
+          .append("g")
+            .call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom))
+          .append("g");
+          
+        scope.svg.append("rect")
+          .attr("class", "overlay")
+          .attr("width", elem.parent().width())
+          .attr("height", elem.parent().height());
+
+
 
         scope.$on('addFormation', function(event, formation) {
           var group = formation.select('g');
@@ -30,6 +40,10 @@ window.angular.module('ngff.directives.board', [])
           drag1.call(group);
 
         })
+
+        function zoom(){
+           scope.svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+        }
 
 
 
