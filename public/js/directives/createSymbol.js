@@ -6,9 +6,6 @@ window.angular.module('ngff.directives.createsymbol', [])
 
 
       var linker = function(scope, elem, attrs) {
-        scope.$watch('color', function(newColor, oldColor) {
-          console.log(scope.color)
-        })
 
         scope.svg = d3.select(elem[0]).append("svg")
           .attr("width", w)
@@ -43,7 +40,6 @@ window.angular.module('ngff.directives.createsymbol', [])
         }
 
         function move() {
-          console.log('move');
           var dragTarget = d3.select(this);
           dragTarget
             .attr('cx', function() {
@@ -59,9 +55,6 @@ window.angular.module('ngff.directives.createsymbol', [])
 
       return {
         restrict: 'E',
-        scope: {
-          color:'=color'
-        },
         link: linker
       }
 

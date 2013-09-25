@@ -1,7 +1,9 @@
 <section ng-controller="SymbolsController">
   <form ng-submit="saveSymbol()">
-     <input type="color" ng-change = "updateColor" ng-model="color"/>
+      <input class="btn-primary" type="submit" value="add">
+     
   </form>
+  <input type="color" ng-change = "updateColor" ng-model="color"/>
   <create-symbol color="color"></create-symbol>
 
 </section>
