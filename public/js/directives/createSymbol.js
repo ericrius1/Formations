@@ -10,7 +10,6 @@ window.angular.module('ngff.directives.createsymbol', [])
         scope.svg = d3.select(elem[0]).append("svg")
           .attr("width", w)
           .attr("height", h)
-          .style('background', 'blue')
           .on('mousedown', function() {
           particle(this);
         })
