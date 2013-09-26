@@ -24,7 +24,7 @@ window.angular.module('ngff.directives.board', [])
           .attr('height', elem.parent().height())
           .style('background', 'purple')
           .append("g")
-            .call(d3.behavior.zoom().scaleExtent([1, 20]).on("zoom", zoom))
+            .call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom))
           .append("g");
           
         scope.svg.append("rect")
