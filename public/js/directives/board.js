@@ -5,6 +5,7 @@ window.angular.module('ngff.directives.board', [])
 
       var linker = function(scope, elem, attrs) {
         var mouseOnNode = false;
+        var zoom = d3.behavior.zoom();
         var drag1 = d3.behavior.drag()
           .origin(function() {
             var t = d3.select(this);
@@ -22,8 +23,8 @@ window.angular.module('ngff.directives.board', [])
         scope.svg = d3.select(elem[0]).append("svg")
           .attr('width', elem.parent().width())
           .attr('height', elem.parent().height())
-          .attr('class', 'boardBackground')
-          .append("g");
+          .attr('class', 'boardBackground');
+
 
         scope.svg.append("rect")
           .attr("class", "overlay")
