@@ -4,27 +4,17 @@ window.angular.module('ngff.directives.board', [])
 
 
       var linker = function(scope, elem, attrs) {
+        var nodeDragging = false;
         var mouseOnNode = false;
         var zoom = d3.behavior.zoom();
-        var drag1 = d3.behavior.drag()
-          .origin(function() {
-            var t = d3.select(this);
-            return {
-              x: t.attr("x") + d3.transform(t.attr("transform")).translate[0],
-              y: t.attr("y") + d3.transform(t.attr("transform")).translate[1]
-            };
-          })
-          .on("drag", function(d, i) {
-            d3.select(this).attr("transform", function(d, i) {
-              return "translate(" + [d3.event.x, d3.event.y] + ")"
-            })
-          });
 
         scope.svg = d3.select(elem[0]).append("svg")
           .attr('width', elem.parent().width())
           .attr('height', elem.parent().height())
-          .attr('class', 'boardBackground');
-
+          .attr('class', 'boardBackground')
+          .append('g')
+          .call(d3.behavior.zoom().on('zoom', redraw))
+          .append('g')
 
         scope.svg.append("rect")
           .attr("class", "overlay")
@@ -36,15 +26,32 @@ window.angular.module('ngff.directives.board', [])
         scope.$on('addFormation', function(event, formation) {
           var group = formation.select('g');
           scope.svg.node().appendChild(group.node())
-          drag1.call(group);
-          group.on('mousedown', function() {
-            mouseOnNode = true;
-          })
-          group.on('mouseup', function() {
-            mouseOnNode = false;
-          })
+          var pieces = group.selectAll('circle')
+            .call(d3.behavior.drag().on('drag', move));
+
 
         })
+
+        function move() {
+          scope.svg.call(d3.behavior.zoom().on('zoom', null))
+
+          var dragTarget = d3.select(this);
+          dragTarget
+            .attr('cx', function() {
+              return d3.event.dx + parseInt(dragTarget.attr('cx'))
+            })
+            .attr('cy', function() {
+              return d3.event.dy + parseInt(dragTarget.attr('cy'))
+            })
+        }
+
+        function redraw() {
+          
+          console.log('redraw')
+          scope.svg
+          .attr("transform","translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
+        }
+
 
       }
 
