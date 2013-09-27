@@ -1,4 +1,4 @@
-window.app = angular.module('ngMagnets', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ngRoute', 'ngff.controllers', 'ngff.directives', 'ngff.services']);
+window.app = angular.module('ngMagnets', ['ngCookies', 'ngResource', 'ui.bootstrap', 'ngRoute', 'ngff.controllers', 'ngff.directives', 'ngff.services', 'colorpicker.module']);
 
 // bundling dependencies
 window.angular.module('ngff.controllers', ['ngff.controllers.index', 'ngff.controllers.symbols', 'ngff.controllers.header', 'ngff.controllers.board']);
