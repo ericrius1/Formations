@@ -6,14 +6,14 @@ window.angular.module('ngff.directives.board', [])
       var linker = function(scope, elem, attrs) {
         var nodeDragging = false;
         var mouseOnNode = false;
-        var zoom = d3.behavior.zoom();
+ 
 
         scope.svg = d3.select(elem[0]).append("svg")
           .attr('width', elem.parent().width())
           .attr('height', elem.parent().height())
           .attr('class', 'boardBackground')
           .append('g')
-          .call(d3.behavior.zoom().on('zoom', redraw))
+          .call(d3.behavior.zoom().on('zoom', zoom))
           .append('g')
 
         scope.svg.append("rect")
@@ -33,7 +33,6 @@ window.angular.module('ngff.directives.board', [])
         })
 
         function move() {
-          scope.svg.call(d3.behavior.zoom().on('zoom', null))
 
           var dragTarget = d3.select(this);
           dragTarget
@@ -44,17 +43,12 @@ window.angular.module('ngff.directives.board', [])
               return d3.event.dy + parseInt(dragTarget.attr('cy'))
             })
         }
-
-        function redraw() {
-          
-          console.log('redraw')
+        function zoom() {
+          console.log('zoom')
           scope.svg
           .attr("transform","translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")");
         }
-
-
       }
-
 
       return {
         restrict: 'E',
