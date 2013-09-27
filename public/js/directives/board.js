@@ -23,7 +23,6 @@ window.angular.module('ngff.directives.board', [])
           .attr('width', elem.parent().width())
           .attr('height', elem.parent().height())
           .attr('class', 'boardBackground')
-          .call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", zoom))
           .append("g");
 
         scope.svg.append("rect")
@@ -45,12 +44,6 @@ window.angular.module('ngff.directives.board', [])
           })
 
         })
-
-        function zoom() {
-          if(mouseOnNode)return
-          scope.svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-
-        }
 
       }
 
